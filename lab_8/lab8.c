@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include <locale.h>
+#include <math.h>
+
+int prac0()
+{
+    printf("Задание 0:  ");
+    printf("\n");
+    for (int start = 1; start <= 10; start++)
+    {
+        printf("*");
+    }
+
+
+    printf("\nПункт *):  ");
+    printf("\n");
+    printf("+");
+    for (int start = 1; start <= 10; start++)
+    {
+        printf("*");
+    }
+    printf("+");
+
+
+    printf("\nПункт **): ");
+    printf("\n");
+    for (int start = 1; start <= 10; start++)
+    {
+        if (start <= 5) {
+            printf("*");
+        }
+        else {
+            printf("#"); 
+        }
+    }
+
+
+    printf("\nПункт ***): ");
+    printf("\n");
+    for (int start = 1; start <= 10; start++)
+    {
+        printf("*");
+        printf("!");
+    }
+}
+
+int prac1(int n, int m, int s, int k)
+{
+    for (int i = m; i >= n; i--)
+    {
+        s += i;
+        printf("выполнено %d раз\n", k++);
+    }
+    return s;
+}
+
+int prac1a(int m, double val)
+{
+    for (int i = 0; i <= m; i++)
+    {
+        printf("2^%-2d = %10.0f\n", i, val);
+        if (i < m)
+        {
+            val *= 2.0;
+        }
+    }
+    return val;
+}
+
+int prac2()
+{
+    double step;
+
+    printf("Введите значение шага табуляции (например, 0.1): ");
+    scanf("%lf", &step);
+
+    double x_start = 0.2;
+    double x_end = 2.2;
+
+    printf("\n");
+    printf("-------------\n");
+    printf("|    x    |    f(x)    |\n");
+    printf("-------------\n");
+
+    double x = x_start;
+    while (x <= x_end) {
+        double fx = 1.8 * x * x - sin(10.0 * x);
+        printf("| %7.4f | %10.4f |\n", x, fx);
+        x += step;
+    }
+
+    printf("-------------\n");
+
+    return 0;
+}
+
+int dz(int N)
+{
+
+    double total_sum = 0.0;
+    double sin_sum = 0.0;
+
+    for (int i = 1; i <= N; i++) {
+        sin_sum += sin(i);
+        total_sum += 1.0 / sin_sum;
+    }
+
+    printf("Результат для N = %d: %.6f\n", N, total_sum);
+
+    return 0;
+}
+
+int main() 
+{
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+
+    printf("\nЗадание 0\n\n");
+    prac0();
+
+    printf("\nЗадание 1\n\n");
+    int n, m;
+    int s = 0;
+    int k = 1;
+    printf("Введите m (начало) и n (конец): ");
+    scanf("%d %d", &m, &n);
+    printf("результат %d\n", prac1(n, m, s, k));
+   
+    double val = 1.0;
+    double res;
+    printf("\nЗадание 1a\n\n");
+    printf("Введите максимальную степень n: ");
+    scanf("%d", &n);
+    printf("\nТаблица степеней двойки\n");
+    res = prac1a(n,val);
+    printf("Результат: %1fK\n", res / 1024.0);
+    
+    printf("\nВычисление функции для Варианта 3:\n");
+    printf("y = 1.8 * x^2 - sin(10 * x)\n");
+    printf("Интервал: [0.2; 2.2]\n\n");
+    prac2();
+
+    int N;
+    printf("Домашнее задание\n");
+    printf("Введите N: ");
+    scanf("%d", &N);
+    dz(N);
+
+    return 0;
+}
