@@ -4,13 +4,10 @@
 
 int prac0()
 {
-    printf("Задание 0:  ");
-    printf("\n");
     for (int start = 1; start <= 10; start++)
     {
         printf("*");
     }
-
 
     printf("\nПункт *):  ");
     printf("\n");
@@ -54,7 +51,7 @@ int prac1(int n, int m, int s, int k)
     return s;
 }
 
-int prac1a(int m, double val)
+double prac1a(int m, double val)
 {
     for (int i = 0; i <= m; i++)
     {
@@ -110,7 +107,7 @@ int dz(int N)
     return 0;
 }
 
-int main() 
+int main()
 {
     setlocale(LC_ALL, "ru_RU.UTF-8");
 
@@ -121,18 +118,26 @@ int main()
     int n, m;
     int s = 0;
     int k = 1;
-    printf("Введите m (начало) и n (конец): ");
-    scanf("%d %d", &m, &n);
-    printf("результат %d\n", prac1(n, m, s, k));
-   
+    printf("Введите m (начало) и n (конец): \n");
+    scanf("%d", &m);
+    scanf("%d", &n);
+    printf("результат %d\n", prac1(m, n, s, k));
+
     double val = 1.0;
     double res;
     printf("\nЗадание 1a\n\n");
     printf("Введите максимальную степень n: ");
     scanf("%d", &n);
-    printf("\nТаблица степеней двойки\n");
-    res = prac1a(n,val);
-    printf("Результат: %1fK\n", res / 1024.0);
+    if (n > 20)
+    {
+        printf("Слишком большое значение");
+    }
+    else
+    {
+        printf("\nТаблица степеней двойки\n");
+        res = prac1a(n, val);
+        printf("Результат: %1fK\n", res / 1024.0);
+    }
     
     printf("\nВычисление функции для Варианта 3:\n");
     printf("y = 1.8 * x^2 - sin(10 * x)\n");
