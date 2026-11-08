@@ -27,7 +27,7 @@ int prac0()
             printf("*");
         }
         else {
-            printf("#"); 
+            printf("#");
         }
     }
 
@@ -41,7 +41,7 @@ int prac0()
     }
 }
 
-int prac1(int n, int m, int s, int k)
+int prac1(int m, int n, int s, int k)
 {
     for (int i = m; i >= n; i--)
     {
@@ -64,29 +64,17 @@ double prac1a(int m, double val)
     return val;
 }
 
-int prac2()
+int prac2(double step)
 {
-    double step;
-
-    printf("Введите значение шага табуляции (например, 0.1): ");
-    scanf("%lf", &step);
 
     double x_start = 0.2;
     double x_end = 2.2;
 
-    printf("\n");
-    printf("-------------\n");
-    printf("|    x    |    f(x)    |\n");
-    printf("-------------\n");
-
-    double x = x_start;
-    while (x <= x_end) {
-        double fx = 1.8 * x * x - sin(10.0 * x);
-        printf("| %7.4f | %10.4f |\n", x, fx);
-        x += step;
+    for (double i = x_start; i <= x_end; i += step)
+    {
+        double fx = 1.8 * i * i - sin(10.0 * i);
+        printf("| %7.4f | %10.4f |\n", i, fx);
     }
-
-    printf("-------------\n");
 
     return 0;
 }
@@ -102,9 +90,7 @@ int dz(int N)
         total_sum += 1.0 / sin_sum;
     }
 
-    printf("Результат для N = %d: %.6f\n", N, total_sum);
-
-    return 0;
+    return total_sum;
 }
 
 int main()
@@ -121,7 +107,14 @@ int main()
     printf("Введите m (начало) и n (конец): \n");
     scanf("%d", &m);
     scanf("%d", &n);
-    printf("результат %d\n", prac1(m, n, s, k));
+    if (m > 15)
+    {
+        printf("Введёно слишком большое значение m!\n");
+    }
+    else
+    {
+        printf("результат %d\n", prac1(m, n, s, k));
+    }
 
     double val = 1.0;
     double res;
@@ -138,17 +131,34 @@ int main()
         res = prac1a(n, val);
         printf("Результат: %1fK\n", res / 1024.0);
     }
-    
+
+    double step;
     printf("\nВычисление функции для Варианта 3:\n");
     printf("y = 1.8 * x^2 - sin(10 * x)\n");
     printf("Интервал: [0.2; 2.2]\n\n");
-    prac2();
+    printf("Введите значение шага табуляции (например, 0.1): ");
+    scanf("%lf", &step);
+    if (step <= 0)
+    {
+        printf("Введён не положительный шаг!\n");
+    }
+    else
+    {
+        printf("\n");
+        printf("-------------\n");
+        printf("|    x    |    f(x)    |\n");
+        printf("-------------\n");
+        prac2(step);
+        printf("-------------\n");
+    }
 
     int N;
+    double ress;
     printf("Домашнее задание\n");
     printf("Введите N: ");
     scanf("%d", &N);
-    dz(N);
+    ress = dz(N);
+    printf("Результат для N = %d: %.6f\n", N, ress);
 
     return 0;
 }
